@@ -1,0 +1,1232 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philla Digital | Premium Assets & Mindset Architecture</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#080B11',
+                            darker: '#04060A',
+                            card: '#0F1524',
+                            accent: '#8B5CF6', /* Premium Violet */
+                            gold: '#F59E0B',   /* Warm Amber Gold */
+                            success: '#10B981',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #04060A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1F2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8B5CF6;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark text-slate-100 font-sans antialiased selection:bg-brand-accent selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-brand-dark/80 backdrop-blur-xl border-b border-white/5 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-accent to-brand-gold flex items-center justify-center shadow-lg shadow-brand-accent/20 transition-transform duration-300 group-hover:scale-105">
+                    <span class="text-white font-serif font-black text-xl">Φ</span>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-white font-bold tracking-wider text-lg uppercase font-sans">Philla</span>
+                    <span class="text-xs text-brand-gold font-medium uppercase tracking-widest -mt-1">Digital</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#products" class="text-slate-300 hover:text-white text-sm font-medium transition-colors">Digital Vault</a>
+                <a href="#mindset-catalyst" class="text-slate-300 hover:text-white text-sm font-medium transition-colors">Mindset Shift</a>
+                <a href="#leverage-calc" class="text-slate-300 hover:text-white text-sm font-medium transition-colors">Scale Calculator</a>
+                <a href="#why-us" class="text-slate-300 hover:text-white text-sm font-medium transition-colors">Our Standard</a>
+                <a href="#testimonials" class="text-slate-300 hover:text-white text-sm font-medium transition-colors">Success Stories</a>
+            </nav>
+
+            <!-- CTA & Cart Indicator -->
+            <div class="flex items-center space-x-4">
+                <!-- Cart Trigger -->
+                <button onclick="toggleCartModal()" class="relative p-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all" aria-label="Open Cart">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span id="cartCount" class="absolute -top-1 -right-1 bg-brand-gold text-brand-darker font-bold text-xs w-5 h-5 rounded-full flex items-center justify-center transform scale-0 transition-transform duration-300">0</span>
+                </button>
+                
+                <a href="#products" class="hidden sm:inline-flex items-center justify-center px-5  py-2.5 text-xs font-semibold uppercase tracking-wider text-brand-darker bg-white rounded-lg hover:bg-brand-gold hover:text-brand-darker transition-all duration-300 shadow-xl shadow-white/5">
+                    Explore Vault
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden text-slate-300 hover:text-white focus:outline-none" onclick="toggleMobileMenu()">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-brand-darker border-b border-white/5 px-6 py-6 transition-all duration-300">
+            <div class="flex flex-col space-y-4">
+                <a href="#products" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white text-base font-medium">Digital Vault</a>
+                <a href="#mindset-catalyst" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white text-base font-medium">Mindset Shift</a>
+                <a href="#leverage-calc" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white text-base font-medium">Scale Calculator</a>
+                <a href="#why-us" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white text-base font-medium">Our Standard</a>
+                <a href="#testimonials" onclick="toggleMobileMenu()" class="text-slate-300 hover:text-white text-base font-medium">Success Stories</a>
+                <a href="#products" onclick="toggleMobileMenu()" class="w-full text-center py-3 text-xs font-semibold uppercase tracking-wider text-brand-darker bg-white rounded-lg hover:bg-brand-gold">
+                    Explore Vault
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen pt-32 pb-20 flex items-center overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-accent/20 via-brand-dark to-brand-dark">
+        <!-- Visual Glow Orbs -->
+        <div class="absolute top-1/4 left-1/10 w-[300px] h-[300px] bg-brand-accent/30 rounded-full blur-[120px] pointer-events-none animate-pulse-slow"></div>
+        <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-brand-gold/10 rounded-full blur-[150px] pointer-events-none animate-pulse-slow" style="animation-delay: 2s;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Left Hero Content -->
+                <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+                    <!-- Premium Batch Tag -->
+                    <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full backdrop-blur-md">
+                        <span class="flex h-2 w-2 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-gold opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-gold"></span>
+                        </span>
+                        <span class="text-xs font-medium uppercase tracking-wider text-slate-300">Unlocking Leverage & True Professional Freedom</span>
+                    </div>
+
+                    <!-- Editorial Title -->
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-serif text-white leading-[1.1] font-light">
+                        Elevate your skill.<br>
+                        <span class="font-bold bg-gradient-to-r from-white via-slate-100 to-brand-gold bg-clip-text text-transparent">Scale your Mindset.</span>
+                    </h1>
+
+                    <!-- Supporting Paragraph -->
+                    <p class="text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                        Philla Digital designs elite frameworks, bespoke developer systems, and deep-dive strategic playbooks designed to bypass the traditional freelancer grind. We don’t just give you tools—we reshape how you command your value.
+                    </p>
+
+                    <!-- Trust Accents -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#products" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-accent to-purple-700 text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-brand-accent/20 transition-all duration-300 transform hover:-translate-y-0.5 text-center">
+                            Access the Digital Vault <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                        </a>
+                        <a href="#mindset-catalyst" class="w-full sm:w-auto px-8 py-4 bg-white/5 border border-white/10 text-white font-semibold rounded-xl hover:bg-white/10 transition-all text-center">
+                            Try Mindset Catalyst
+                        </a>
+                    </div>
+
+                    <!-- Micro Social Proof -->
+                    <div class="pt-8 border-t border-white/5 flex flex-wrap items-center justify-center lg:justify-start gap-8">
+                        <div class="flex items-center space-x-2">
+                            <div class="flex text-brand-gold text-sm">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <span class="text-sm text-slate-300 font-semibold">4.9/5 TrustScore</span>
+                        </div>
+                        <div class="text-sm text-slate-400">
+                            Trusted by <span class="text-white font-bold">14,200+</span> Creators, Freelancers, & Founders.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Hero Card Display -->
+                <div class="lg:col-span-5 relative mt-8 lg:mt-0">
+                    <!-- Glassmorphic Visual Card representing Elite Freelancer Pack -->
+                    <div class="relative mx-auto max-w-[400px] aspect-[4/5] rounded-3xl bg-gradient-to-b from-white/10 to-white/5 p-6 border border-white/10 shadow-2xl backdrop-blur-md animate-float">
+                        <!-- Card Header Accent -->
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="text-xs uppercase font-bold tracking-widest text-brand-gold">Featured Asset</span>
+                            <span class="text-xs bg-white/5 border border-white/10 px-2.5 py-1 rounded-md text-slate-300">v3.4 Release</span>
+                        </div>
+
+                        <!-- Product visual representation -->
+                        <div class="relative rounded-2xl overflow-hidden aspect-[4/3] bg-gradient-to-br from-indigo-950 via-slate-900 to-brand-dark flex flex-col items-center justify-center border border-white/5 p-4 mb-6">
+                            <!-- Abstract Graphic -->
+                            <div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80')"></div>
+                            <div class="relative z-10 w-16 h-16 rounded-full bg-white/5 flex items-center justify-center border border-white/10 text-brand-gold text-2xl mb-3 shadow-xl">
+                                <i class="fa-solid fa-gem animate-pulse"></i>
+                            </div>
+                            <div class="relative z-10 text-center">
+                                <span class="text-xs text-brand-accent tracking-widest uppercase font-bold">The Notion Suite</span>
+                                <h3 class="font-serif text-lg font-bold text-white mt-1">Freelance Sovereign OS</h3>
+                            </div>
+                        </div>
+
+                        <!-- Card Meta Elements -->
+                        <div class="space-y-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-400">Target Value:</span>
+                                <span class="text-white font-bold font-mono">Elite Freelance Mastery</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-400">Format:</span>
+                                <span class="text-white font-semibold">Notion Workspace & Strategy Guide</span>
+                            </div>
+                            <div class="flex justify-between items-end pt-3 border-t border-white/5">
+                                <div>
+                                    <span class="text-xs text-slate-400 line-through block">$149.00</span>
+                                    <span class="text-2xl font-bold text-white font-mono">$79.00</span>
+                                </div>
+                                <button onclick="quickAdd(2)" class="px-4 py-2 bg-white text-brand-darker font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-brand-gold transition-colors">
+                                    Instant Access
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Trust / Logo Strip -->
+    <section class="border-t border-b border-white/5 bg-brand-darker/60 py-10">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-xs uppercase tracking-widest text-slate-500 mb-6 font-semibold">Empowering Specialists from top institutions and networks</p>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center opacity-40 grayscale hover:grayscale-0 transition-all duration-300">
+                <span class="text-lg font-serif font-bold text-white"><i class="fa-brands fa-stripe mr-2 text-2xl"></i>Stripe Partner</span>
+                <span class="text-lg font-bold text-white"><i class="fa-brands fa-figma mr-2 text-2xl"></i>Figma Guild</span>
+                <span class="text-lg font-mono font-bold text-white"><i class="fa-brands fa-github mr-2 text-2xl"></i>GitHub Pro</span>
+                <span class="text-lg font-sans font-bold text-white"><i class="fa-brands fa-notion mr-2 text-2xl"></i>Notion Verified</span>
+                <span class="text-lg font-serif font-black text-white"><i class="fa-brands fa-medium mr-2 text-2xl"></i>Medium Premium</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Mindset Catalyst Section -->
+    <section id="mindset-catalyst" class="py-24 bg-gradient-to-b from-brand-dark to-brand-card relative">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-accent/5 via-transparent to-transparent pointer-events-none"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-widest text-brand-gold font-bold">Interactive Tool</span>
+                <h2 class="text-3xl sm:text-5xl font-serif font-semibold text-white">The Catalyst: Mindset Architecture</h2>
+                <p class="text-slate-400">
+                    Premium tools and eBooks only work if your cognitive operating system is ready. Select your current primary hurdle below and let us calibrate your prospective framework.
+                </p>
+            </div>
+
+            <!-- Main Catalyst App Box -->
+            <div class="bg-brand-dark/50 border border-white/10 rounded-3xl p-6 sm:p-10 shadow-2xl backdrop-blur-md">
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+                    
+                    <!-- Left Side: Roadblock Selection -->
+                    <div class="md:col-span-5 space-y-4">
+                        <label class="block text-xs uppercase tracking-widest text-slate-400 font-bold mb-2">Identify Your Core Roadblock:</label>
+                        
+                        <button onclick="selectRoadblock('impostor')" id="btn-impostor" class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex items-center space-x-4 group border-brand-accent/40 bg-brand-accent/10">
+                            <span class="w-10 h-10 rounded-lg bg-brand-accent/20 flex items-center justify-center text-brand-gold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-ghost"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Impostor Syndrome</h4>
+                                <p class="text-xs text-slate-400">Feeling unqualified to charge high prices</p>
+                            </div>
+                        </button>
+
+                        <button onclick="selectRoadblock('pricing')" id="btn-pricing" class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex items-center space-x-4 group">
+                            <span class="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-dollar-sign"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Commodity Pricing</h4>
+                                <p class="text-xs text-slate-400">Competing solely on hourly rates and platforms</p>
+                            </div>
+                        </button>
+
+                        <button onclick="selectRoadblock('scarcity')" id="btn-scarcity" class="w-full text-left p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-all flex items-center space-x-4 group">
+                            <span class="w-10 h-10 rounded-lg bg-brand-gold/10 flex items-center justify-center text-brand-gold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-hourglass-half"></i>
+                            </span>
+                            <div>
+                                <h4 class="font-bold text-sm text-white">Client Scarcity</h4>
+                                <p class="text-xs text-slate-400">Lacking high-tier positioning & conversion systems</p>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Right Side: Psychological Dynamic Output -->
+                    <div class="md:col-span-7 bg-brand-card border border-white/5 rounded-2xl p-6 sm:p-8 flex flex-col justify-between h-full min-h-[340px] relative overflow-hidden">
+                        <!-- Abstract overlay glow -->
+                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-brand-accent/10 rounded-full blur-xl"></div>
+                        
+                        <div id="catalystContent" class="space-y-6">
+                            <!-- Impostor default state content -->
+                            <div>
+                                <span class="text-xs uppercase font-bold tracking-widest text-brand-gold px-2.5 py-1 bg-brand-gold/10 rounded border border-brand-gold/20 inline-block mb-3">COGNITIVE BLUEPRINT</span>
+                                <h3 class="text-2xl font-serif text-white mb-2" id="catalystTitle">The Impostor Illusion</h3>
+                                <p class="text-slate-300 leading-relaxed text-sm sm:text-base" id="catalystReframing">
+                                    "Impostor syndrome is the byproduct of rapid growth colliding with unfamiliar environments. If you feel unqualified, it means your standards are high. Clients don't buy your background—they buy risk mitigation."
+                                </p>
+                            </div>
+
+                            <div class="border-t border-white/10 pt-4 space-y-3">
+                                <span class="text-xs font-bold text-slate-400 block"><i class="fa-solid fa-compass text-brand-accent mr-2"></i>Actionable Execution Strategy:</span>
+                                <p class="text-sm text-slate-300 italic" id="catalystAction">
+                                    Audit your past outcomes. Cease selling "hours worked" and begin pricing based on the financial downside your client experiences if they make the wrong choice.
+                                </p>
+                            </div>
+
+                            <!-- Curated Product Placement -->
+                            <div class="bg-brand-dark/80 border border-white/5 p-4 rounded-xl flex items-center justify-between" id="catalystAd">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-12 h-12 rounded-lg bg-brand-accent/20 flex items-center justify-center text-brand-accent">
+                                        <i class="fa-solid fa-book-open text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] text-brand-gold font-bold uppercase tracking-widest block">Primary Recommended Asset</span>
+                                        <h5 class="text-xs text-white font-bold" id="recProductName">The Sovereignty Manual eBook</h5>
+                                    </div>
+                                </div>
+                                <button onclick="quickAdd(0)" class="px-3 py-2 bg-white text-brand-darker font-bold text-xs rounded hover:bg-brand-gold transition-colors">
+                                    Instant Buy
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Core Digital Vault / Products Section -->
+    <section id="products" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div class="space-y-4 max-w-xl">
+                    <span class="text-xs uppercase tracking-widest text-brand-gold font-bold">Premium Catalog</span>
+                    <h2 class="text-3xl sm:text-5xl font-serif text-white font-medium">Architect Your Infrastructure</h2>
+                    <p class="text-slate-400">
+                        Battle-tested assets curated to upgrade your production speeds, refine positioning, and unlock modern creative leverage.
+                    </p>
+                </div>
+                <!-- Categories Filtering -->
+                <div class="flex flex-wrap gap-2 mt-6 md:mt-0 bg-white/5 p-1.5 rounded-xl border border-white/10 backdrop-blur">
+                    <button onclick="filterProducts('all')" id="btn-filter-all" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-brand-accent text-white transition-all">
+                        All Assets
+                    </button>
+                    <button onclick="filterProducts('ebook')" id="btn-filter-ebook" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white transition-all">
+                        eBooks & Manuals
+                    </button>
+                    <button onclick="filterProducts('system')" id="btn-filter-system" class="px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white transition-all">
+                        Business Systems
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="productGrid">
+                
+                <!-- Product 1 -->
+                <div class="product-card bg-brand-card border border-white/5 rounded-2xl overflow-hidden hover:border-brand-accent/40 transition-all duration-300 group flex flex-col justify-between" data-category="ebook">
+                    <div>
+                        <!-- Product Header/Thumb -->
+                        <div class="relative aspect-[16/10] bg-gradient-to-br from-indigo-900 via-slate-900 to-brand-card flex items-center justify-center p-6 border-b border-white/5 overflow-hidden">
+                            <!-- Background pattern decoration -->
+                            <div class="absolute inset-0 bg-cover bg-center opacity-10 mix-blend-color-dodge" style="background-image: url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=600&q=80')"></div>
+                            
+                            <div class="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl text-brand-gold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-book-bookmark"></i>
+                            </div>
+                            <span class="absolute top-4 right-4 bg-brand-accent/20 border border-brand-accent/30 text-[10px] text-brand-accent font-extrabold uppercase tracking-widest px-2.5 py-1 rounded">
+                                Bestseller
+                            </span>
+                        </div>
+                        
+                        <!-- Details -->
+                        <div class="p-6 space-y-3">
+                            <span class="text-xs uppercase font-bold tracking-widest text-slate-500">Premium eBook</span>
+                            <h3 class="text-xl font-bold text-white group-hover:text-brand-accent transition-colors">The Mindset of Sovereignty</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Dismantle psychological pricing boundaries, learn psychological positioning frameworks, and transition from raw developer-laborer to a consultative high-ticket asset.
+                            </p>
+                            <!-- Highlights -->
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="text-[11px] bg-white/5 px-2.5 py-1 rounded text-slate-300"><i class="fa-regular fa-clock mr-1 text-brand-gold"></i> 140 Pages</span>
+                                <span class="text-[11px] bg-white/5 px-2.5 py-1 rounded text-slate-300"><i class="fa-solid fa-certificate mr-1 text-brand-accent"></i> Audio Included</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 border-t border-white/5 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 line-through block font-mono">$49.00</span>
+                            <span class="text-xl font-bold text-white font-mono">$29.00</span>
+                        </div>
+                        <button onclick="addToCart(0)" class="px-4 py-2.5 bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-white hover:text-brand-darker transition-all">
+                            Add To Vault
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card bg-brand-card border border-white/5 rounded-2xl overflow-hidden hover:border-brand-accent/40 transition-all duration-300 group flex flex-col justify-between" data-category="system">
+                    <div>
+                        <!-- Product Header/Thumb -->
+                        <div class="relative aspect-[16/10] bg-gradient-to-br from-purple-950 via-slate-900 to-brand-card flex items-center justify-center p-6 border-b border-white/5 overflow-hidden">
+                            <div class="absolute inset-0 bg-cover bg-center opacity-10 mix-blend-color-dodge" style="background-image: url('https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80')"></div>
+                            
+                            <div class="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl text-emerald-400 group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-diagram-project"></i>
+                            </div>
+                            <span class="absolute top-4 right-4 bg-brand-gold/20 border border-brand-gold/30 text-[10px] text-brand-gold font-extrabold uppercase tracking-widest px-2.5 py-1 rounded">
+                                Premium
+                            </span>
+                        </div>
+                        
+                        <!-- Details -->
+                        <div class="p-6 space-y-3">
+                            <span class="text-xs uppercase font-bold tracking-widest text-slate-500">Business Template / OS</span>
+                            <h3 class="text-xl font-bold text-white group-hover:text-brand-accent transition-colors">Freelance Sovereign OS</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                A completely integrated Notion workspace linking client CRM, dynamic finance modules, active visual roadmaps, and highly persuasive proposal builders designed for top-bracket pricing.
+                            </p>
+                            <!-- Highlights -->
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="text-[11px] bg-white/5 px-2.5 py-1 rounded text-slate-300"><i class="fa-regular fa-clock mr-1 text-brand-gold"></i> Notion Space</span>
+                                <span class="text-[11px] bg-white/5 px-2.5 py-1 rounded text-slate-300"><i class="fa-solid fa-globe mr-1 text-brand-accent"></i> Lifetime Updates</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 border-t border-white/5 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 line-through block font-mono">$149.00</span>
+                            <span class="text-xl font-bold text-white font-mono">$79.00</span>
+                        </div>
+                        <button onclick="addToCart(1)" class="px-4 py-2.5 bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-white hover:text-brand-darker transition-all">
+                            Add To Vault
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card bg-brand-card border border-white/5 rounded-2xl overflow-hidden hover:border-brand-accent/40 transition-all duration-300 group flex flex-col justify-between" data-category="system">
+                    <div>
+                        <!-- Product Header/Thumb -->
+                        <div class="relative aspect-[16/10] bg-gradient-to-br from-amber-950 via-slate-900 to-brand-card flex items-center justify-center p-6 border-b border-white/5 overflow-hidden">
+                            <div class="absolute inset-0 bg-cover bg-center opacity-10 mix-blend-color-dodge" style="background-image: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=80')"></div>
+                            
+                            <div class="w-16 h-16 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl text-brand-gold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-file-invoice-dollar"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Details -->
+                        <div class="p-6 space-y-3">
+                            <span class="text-xs uppercase font-bold tracking-widest text-slate-500">Proposal & Swipe Vault</span>
+                            <h3 class="text-xl font-bold text-white group-hover:text-brand-accent transition-colors">Elite Pitch Swipe Vault</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed">
+                                Stop writing generic pitches. Copy our validated structural sequences, behavioral communication prompts, and pre-designed scopes of work that won multi-6-figure engagements.
+                            </p>
+                            <!-- Highlights -->
+                            <div class="flex flex-wrap gap-2 pt-2">
+                                <span class="text-[11px] bg-white/5 px-2.5 py-1 rounded text-slate-300"><i class="fa-regular fa-clock mr-1 text-brand-gold"></i> 40+ Templates</span>
+                                <span class="text-[11px] bg-white/5 px-2.5 py-1 rounded text-slate-300"><i class="fa-solid fa-bolt mr-1 text-brand-accent"></i> PDF & MD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-6 border-t border-white/5 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-400 line-through block font-mono">$89.00</span>
+                            <span class="text-xl font-bold text-white font-mono">$49.00</span>
+                        </div>
+                        <button onclick="addToCart(2)" class="px-4 py-2.5 bg-white/5 border border-white/10 text-white font-bold text-xs uppercase tracking-wider rounded-lg hover:bg-white hover:text-brand-darker transition-all">
+                            Add To Vault
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Scale Leverages Calculator -->
+    <section id="leverage-calc" class="py-24 bg-gradient-to-b from-brand-card to-brand-dark">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Details -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-xs uppercase tracking-widest text-brand-gold font-bold">The Math Behind the Mindset</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif text-white font-bold leading-tight">Quantify Your Creative Leverage</h2>
+                    <p class="text-slate-400 leading-relaxed">
+                        Many high-caliber freelancers trap themselves in low pricing cycles. Slide the bars to calculate your annual capacity, and notice how dynamic pricing structures create massive margin space.
+                    </p>
+                    <div class="bg-brand-dark/50 border border-white/5 p-5 rounded-2xl">
+                        <h4 class="text-sm font-bold text-white mb-2"><i class="fa-solid fa-lightbulb text-brand-gold mr-2"></i> The Philla Maxim</h4>
+                        <p class="text-xs text-slate-400">
+                            "Doubling your rates reduces your required workload by 50% while doubling your operational space to overdeliver."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Slider App -->
+                <div class="lg:col-span-7 bg-brand-dark border border-white/10 p-6 sm:p-8 rounded-3xl space-y-8">
+                    <!-- Slider 1 -->
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-300 font-bold">Target Hourly Value:</span>
+                            <span class="text-brand-gold font-bold font-mono text-lg" id="hourlyValueLabel">$85/hr</span>
+                        </div>
+                        <input type="range" id="hourlyRateSlider" min="30" max="300" value="85" oninput="calculateLeverage()" class="w-full accent-brand-accent bg-slate-800 h-2 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-xs text-slate-500">
+                            <span>$30/hr</span>
+                            <span>$300/hr</span>
+                        </div>
+                    </div>
+
+                    <!-- Slider 2 -->
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-300 font-bold">Weekly billable hours:</span>
+                            <span class="text-brand-accent font-bold font-mono text-lg" id="hoursValueLabel">25 hrs</span>
+                        </div>
+                        <input type="range" id="hoursSlider" min="5" max="50" value="25" oninput="calculateLeverage()" class="w-full accent-brand-accent bg-slate-800 h-2 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-xs text-slate-500">
+                            <span>5 hours</span>
+                            <span>50 hours</span>
+                        </div>
+                    </div>
+
+                    <!-- Outputs Display -->
+                    <div class="grid grid-cols-2 gap-4 pt-6 border-t border-white/5">
+                        <div class="bg-brand-card border border-white/5 p-4 rounded-xl text-center">
+                            <span class="text-[10px] uppercase text-slate-500 font-bold tracking-widest block mb-1">Monthly Gross Revenue</span>
+                            <span class="text-xl sm:text-2xl font-black font-mono text-white" id="monthlyResult">$8,500</span>
+                        </div>
+                        <div class="bg-brand-card border border-white/5 p-4 rounded-xl text-center">
+                            <span class="text-[10px] uppercase text-slate-500 font-bold tracking-widest block mb-1">Projected Annual Capital</span>
+                            <span class="text-xl sm:text-2xl font-black font-mono text-brand-gold" id="annualResult">$102,000</span>
+                        </div>
+                    </div>
+
+                    <!-- Upgrade path CTA -->
+                    <div class="text-center">
+                        <p class="text-xs text-slate-400 mb-3">Struggling to source clients at rates above $50/hr?</p>
+                        <a href="#products" class="inline-flex items-center text-xs text-brand-accent font-bold uppercase tracking-wider hover:text-brand-gold transition-colors">
+                            Unlock the Pitch Swipe Vault <i class="fa-solid fa-chevron-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section (Convey Trust & Quality) -->
+    <section id="why-us" class="py-24 bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+                <span class="text-xs uppercase tracking-widest text-brand-gold font-bold">Uncompromising Quality</span>
+                <h2 class="text-3xl sm:text-5xl font-serif text-white font-medium">The Philla Standard</h2>
+                <p class="text-slate-400">
+                    Unlike mass-produced, copy-paste templates, our assets undergo weeks of contextual iteration in real market environments before publication.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Pillar 1 -->
+                <div class="bg-brand-card border border-white/5 p-8 rounded-2xl space-y-4 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-brand-accent/10 border border-brand-accent/20 flex items-center justify-center text-brand-accent text-xl">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Trustpilot & Verified Infrastructure</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        We leverage industry-grade standard frameworks. No missing pieces, no dead-ends. Every asset is complete with pristine onboarding documentation.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="bg-brand-card border border-white/5 p-8 rounded-2xl space-y-4 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center text-brand-gold text-xl">
+                        <i class="fa-solid fa-arrows-spin"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Continuous Evolution</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Markets mutate quickly. Buying a Philla Digital asset grants you lifetime structural upgrades at zero extra cost, accessible inside your private login portal.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="bg-brand-card border border-white/5 p-8 rounded-2xl space-y-4 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 text-xl">
+                        <i class="fa-regular fa-lightbulb"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Mindset Calibration</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        Execution is nothing without psychological backing. Every framework integrates contextual coaching to help you speak with absolute authority to high-ticket clients.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Testimonials / Success Stories Section -->
+    <section id="testimonials" class="py-24 bg-brand-card border-t border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <span class="text-xs uppercase tracking-widest text-brand-gold font-bold">Empowered Alumni</span>
+                <h2 class="text-3xl sm:text-5xl font-serif text-white font-medium">Voices of Leverage</h2>
+                <p class="text-slate-400">
+                    Discover how real developers, designers, and consultants leveraged Philla's ecosystems to transform raw labor hours into elegant, leveraged digital value.
+                </p>
+            </div>
+
+            <!-- Grid Layout Testimonials -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-brand-dark border border-white/5 p-6 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex text-brand-gold text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed italic">
+                            "The Freelance Sovereign OS completely systemized my onboarding. I pitched a $14,000 architectural contract yesterday using the embedded framework and the client signed off immediately without a single negotiation attempt."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4 pt-6 border-t border-white/5 mt-6">
+                        <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center font-bold text-white text-xs">
+                            KM
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Kaelen Miller</h4>
+                            <span class="text-xs text-slate-500">Enterprise Product Architect</span>
+                        </div>
+                        <span class="ml-auto text-[10px] bg-brand-accent/20 text-brand-accent px-2 py-0.5 rounded font-extrabold">VERIFIED BUYER</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-brand-dark border border-white/5 p-6 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex text-brand-gold text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed italic">
+                            "Before reading The Mindset of Sovereignty, I struggled to price my projects over $3k. Philla taught me to stop selling my time and sell the cost of inaction. It sounds subtle, but it generated an extra $42k this year alone."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4 pt-6 border-t border-white/5 mt-6">
+                        <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center font-bold text-white text-xs">
+                            AS
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Alina Savelieva</h4>
+                            <span class="text-xs text-slate-500">UX Design Specialist</span>
+                        </div>
+                        <span class="ml-auto text-[10px] bg-brand-accent/20 text-brand-accent px-2 py-0.5 rounded font-extrabold">VERIFIED BUYER</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-brand-dark border border-white/5 p-6 rounded-2xl flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <div class="flex text-brand-gold text-xs">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed italic">
+                            "The Pitch Swipe Vault template files saved me endless hours of conceptualizing. Standardized structures, polished layouts, and psychological scripts. Simply outstanding quality."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-4 pt-6 border-t border-white/5 mt-6">
+                        <div class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center font-bold text-white text-xs">
+                            JC
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-bold text-white">Jeremy Cross</h4>
+                            <span class="text-xs text-slate-500">React Specialist & Advisor</span>
+                        </div>
+                        <span class="ml-auto text-[10px] bg-brand-accent/20 text-brand-accent px-2 py-0.5 rounded font-extrabold">VERIFIED BUYER</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Consultation Contact / Newsletter Block -->
+    <section class="py-24 bg-brand-dark relative">
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+            
+            <div class="bg-gradient-to-tr from-brand-accent/25 via-white/5 to-white/5 border border-white/10 rounded-3xl p-8 sm:p-12 space-y-8 backdrop-blur-md">
+                <span class="text-xs uppercase tracking-widest text-brand-gold font-bold">Corporate Strategy</span>
+                <h2 class="text-3xl sm:text-5xl font-serif text-white font-medium leading-tight">Need Bespoke Architecture?</h2>
+                <p class="text-slate-300 max-w-xl mx-auto text-sm sm:text-base">
+                    If you represent an agency or enterprise seeking fully customized business systems, operations workspaces, or elite onboarding manuals, let's connect directly.
+                </p>
+
+                <!-- Input group for premium engagement -->
+                <form id="consultationForm" onsubmit="handleFormSubmit(event)" class="max-w-md mx-auto space-y-4">
+                    <div class="relative">
+                        <input type="email" required placeholder="Enter your business email" class="w-full bg-brand-dark border border-white/10 rounded-xl px-5 py-4 text-sm text-white focus:outline-none focus:border-brand-accent/50 placeholder:text-slate-500">
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-white text-brand-darker font-bold rounded-xl hover:bg-brand-gold transition-colors text-sm uppercase tracking-wider">
+                        Request Private Architecture Consultation
+                    </button>
+                </form>
+
+                <p class="text-xs text-slate-500">No marketing spam. Only custom communication from our strategic partners.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-darker border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                
+                <!-- Brand Info -->
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-accent flex items-center justify-center text-white font-serif font-black">
+                            Φ
+                        </div>
+                        <span class="text-white font-bold tracking-wider text-md uppercase">Philla Digital</span>
+                    </div>
+                    <p class="text-xs text-slate-500 leading-relaxed">
+                        Constructing strategic mental operating frameworks and high-ticket digital assets for the modern specialized creator class.
+                    </p>
+                </div>
+
+                <!-- Navigation Columns -->
+                <div>
+                    <h4 class="text-xs uppercase tracking-wider text-slate-300 font-bold mb-4">The Vault</h4>
+                    <ul class="space-y-2 text-xs text-slate-500">
+                        <li><a href="#products" class="hover:text-white transition-colors">Sovereignty Manual (eBook)</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Freelance Sovereign OS (Notion)</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Elite Pitch Swipe Vault</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs uppercase tracking-wider text-slate-300 font-bold mb-4">Mindset Tools</h4>
+                    <ul class="space-y-2 text-xs text-slate-500">
+                        <li><a href="#mindset-catalyst" class="hover:text-white transition-colors">Mindset Catalyst</a></li>
+                        <li><a href="#leverage-calc" class="hover:text-white transition-colors">Income Scale Calculator</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs uppercase tracking-wider text-slate-300 font-bold mb-4">Secure & Trust</h4>
+                    <div class="space-y-3">
+                        <p class="text-[11px] text-slate-500 leading-relaxed">
+                            Payment interfaces secured with AES-256 bit encryption. Complete privacy guaranteed.
+                        </p>
+                        <!-- Icons -->
+                        <div class="flex space-x-3 text-slate-400 text-lg">
+                            <i class="fa-brands fa-cc-stripe"></i>
+                            <i class="fa-brands fa-cc-visa"></i>
+                            <i class="fa-brands fa-cc-mastercard"></i>
+                            <i class="fa-brands fa-cc-apple-pay"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-white/5 mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 Philla Digital. All Rights Reserved. Crafted with high standards.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Vault Membership</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal Slide-over -->
+    <div id="cartModal" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Background Overlay -->
+            <div class="absolute inset-0 bg-brand-darker/60 backdrop-blur-sm transition-opacity" onclick="toggleCartModal()"></div>
+
+            <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+                <div class="pointer-events-auto w-screen max-w-md">
+                    <div class="flex h-full flex-col overflow-y-scroll bg-brand-card shadow-2xl border-l border-white/10">
+                        
+                        <!-- Cart Header -->
+                        <div class="px-6 py-6 border-b border-white/5 flex items-center justify-between">
+                            <h2 class="text-lg font-bold text-white uppercase tracking-wider font-serif">Your Digital Vault (Cart)</h2>
+                            <button onclick="toggleCartModal()" class="text-slate-400 hover:text-white">
+                                <i class="fa-solid fa-xmark text-lg"></i>
+                            </button>
+                        </div>
+
+                        <!-- Cart Items List Container -->
+                        <div class="flex-1 overflow-y-auto px-6 py-6 space-y-6" id="cartItemsList">
+                            <!-- Populated Dynamically -->
+                            <div class="text-center py-20 text-slate-500 space-y-4">
+                                <i class="fa-solid fa-cloud-arrow-down text-4xl text-slate-600 block"></i>
+                                <p class="text-sm">Your intellectual asset vault is currently empty.</p>
+                            </div>
+                        </div>
+
+                        <!-- Cart Bottom Pricing & Simulated Checkout -->
+                        <div class="border-t border-white/5 px-6 py-6 bg-brand-dark/40 space-y-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-slate-400">Subtotal Assets:</span>
+                                <span class="text-white font-mono font-bold" id="cartSubtotal">$0.00</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-slate-500">
+                                <span>Platform Delivery:</span>
+                                <span class="text-brand-success font-medium">FREE Instant Download</span>
+                            </div>
+                            <button onclick="triggerSimulatedCheckout()" id="checkoutBtn" class="w-full py-4 bg-brand-gold text-brand-darker font-bold rounded-xl text-center hover:bg-white hover:text-brand-darker transition-colors uppercase text-xs tracking-wider" disabled>
+                                Unlock Vault Infrastructure
+                            </button>
+                            <p class="text-[10px] text-center text-slate-500"><i class="fa-solid fa-lock text-brand-accent mr-1"></i> AES-256 Bit Encrypted Secure Core Portal Access</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Alerts Container -->
+    <div id="toastContainer" class="fixed bottom-6 right-6 z-50 space-y-2 pointer-events-none"></div>
+
+    <!-- Dynamic JavaScript Engine -->
+    <script>
+        // Database of Available Products
+        const database = [
+            {
+                id: 0,
+                name: "The Mindset of Sovereignty",
+                category: "ebook",
+                price: 29.00,
+                desc: "140 Pages strategic psychology pricing manual."
+            },
+            {
+                id: 1,
+                name: "Freelance Sovereign OS",
+                category: "system",
+                price: 79.00,
+                desc: "Notion client workspace and operational tracker."
+            },
+            {
+                id: 2,
+                name: "Elite Pitch Swipe Vault",
+                category: "system",
+                price: 49.00,
+                desc: "40+ validated structural pitches and swipes."
+            }
+        ];
+
+        // Mindset Catalyst Framework Content Database
+        const roadblocks = {
+            impostor: {
+                title: "The Impostor Illusion",
+                reframing: "Impostor syndrome is the byproduct of rapid growth colliding with unfamiliar environments. If you feel unqualified, it means your standards are high. Clients don't buy your background—they buy risk mitigation.",
+                action: "Audit your past outcomes. Cease selling 'hours worked' and begin pricing based on the financial downside your client experiences if they make the wrong choice.",
+                recommendedProductIndex: 0
+            },
+            pricing: {
+                title: "Commodity Pricing Trap",
+                reframing: "Competing on price is a race to the bottom. When you participate in 'bidding war' client platforms, you are marketing yourself as a commodity utility. Specialists define the rules; utilities get managed.",
+                action: "Create a curated 'Signature Package' that bundles analysis, execution, and 30-day post-delivery performance guarantees. Never send raw line-item hourly quotes again.",
+                recommendedProductIndex: 1
+            },
+            scarcity: {
+                title: "Client Scarcity Spiral",
+                reframing: "Scarcity of clients is almost always a system error, not a talent error. When you only hunt when you are hungry, you create massive feast-or-famine variance cycles that destroy your cognitive peace.",
+                action: "Build a non-friction prospect outreach pipeline. Dedicate exactly 45 minutes daily to value-first outreach, providing minor diagnostic optimization value before asking for a consultation.",
+                recommendedProductIndex: 2
+            }
+        };
+
+        // User Cart State
+        let cart = [];
+
+        // Dynamic Roadblock Selector
+        function selectRoadblock(key) {
+            // Remove active style classes from all buttons
+            ['impostor', 'pricing', 'scarcity'].forEach(k => {
+                const btn = document.getElementById(`btn-${k}`);
+                if (btn) {
+                    btn.classList.remove('border-brand-accent/40', 'bg-brand-accent/10');
+                }
+            });
+
+            // Add active styling to selected
+            const activeBtn = document.getElementById(`btn-${key}`);
+            if (activeBtn) {
+                activeBtn.classList.add('border-brand-accent/40', 'bg-brand-accent/10');
+            }
+
+            // Perform beautiful fading content swap
+            const data = roadblocks[key];
+            const contentBox = document.getElementById('catalystContent');
+            contentBox.style.opacity = '0';
+            contentBox.style.transform = 'translateY(10px)';
+            contentBox.style.transition = 'all 0.3s ease';
+
+            setTimeout(() => {
+                document.getElementById('catalystTitle').innerText = data.title;
+                document.getElementById('catalystReframing').innerText = `"${data.reframing}"`;
+                document.getElementById('catalystAction').innerText = data.action;
+                
+                const recProduct = database[data.recommendedProductIndex];
+                document.getElementById('recProductName').innerText = recProduct.name;
+                
+                // Update buy action in catalyst box
+                const buyBtn = document.querySelector('#catalystAd button');
+                buyBtn.setAttribute('onclick', `quickAdd(${data.recommendedProductIndex})`);
+
+                contentBox.style.opacity = '1';
+                contentBox.style.transform = 'translateY(0)';
+            }, 300);
+
+            showToast("Perspective Calibrated", "Mindset strategy updated.");
+        }
+
+        // Product Catalog Filters
+        function filterProducts(category) {
+            // Set buttons active state
+            ['all', 'ebook', 'system'].forEach(c => {
+                const btn = document.getElementById(`btn-filter-${c}`);
+                if (btn) {
+                    if (c === category) {
+                        btn.className = "px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider bg-brand-accent text-white transition-all";
+                    } else {
+                        btn.className = "px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider text-slate-400 hover:text-white transition-all";
+                    }
+                }
+            });
+
+            // Filter actual cards
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Interactive Capacity & Leverage Calculator
+        function calculateLeverage() {
+            const hourly = parseInt(document.getElementById('hourlyRateSlider').value);
+            const hours = parseInt(document.getElementById('hoursSlider').value);
+
+            // Update Labels
+            document.getElementById('hourlyValueLabel').innerText = `$${hourly}/hr`;
+            document.getElementById('hoursValueLabel').innerText = `${hours} hrs`;
+
+            // Core Formula
+            const monthlyGross = hourly * hours * 4;
+            const annualGross = monthlyGross * 12;
+
+            // Render Output
+            document.getElementById('monthlyResult').innerText = `$${monthlyGross.toLocaleString()}`;
+            document.getElementById('annualResult').innerText = `$${annualGross.toLocaleString()}`;
+        }
+
+        // Cart Actions
+        function toggleCartModal() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function addToCart(productId) {
+            const product = database[productId];
+            
+            // Check if already exists inside current cart array
+            const exists = cart.find(item => item.id === productId);
+            if (exists) {
+                showToast("Already in Vault", "This asset is already inside your vault cart.");
+                return;
+            }
+
+            cart.push(product);
+            updateCartUI();
+            showToast("Asset Secured", `Added ${product.name} to checkout.`);
+            
+            // Auto open cart modal to show addition
+            setTimeout(() => {
+                toggleCartModal();
+            }, 300);
+        }
+
+        // Shortcut add & immediately unlock
+        function quickAdd(productId) {
+            const product = database[productId];
+            const exists = cart.find(item => item.id === productId);
+            if (!exists) {
+                cart.push(product);
+                updateCartUI();
+            }
+            toggleCartModal();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            showToast("Asset Removed", "Removed item from selection.");
+        }
+
+        function updateCartUI() {
+            const cartCountElement = document.getElementById('cartCount');
+            const cartItemsList = document.getElementById('cartItemsList');
+            const cartSubtotal = document.getElementById('cartSubtotal');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+
+            // Cart Icon Badge Count
+            if (cart.length > 0) {
+                cartCountElement.innerText = cart.length;
+                cartCountElement.classList.remove('scale-0');
+                cartCountElement.classList.add('scale-100');
+                checkoutBtn.removeAttribute('disabled');
+                checkoutBtn.className = "w-full py-4 bg-brand-gold text-brand-darker font-bold rounded-xl text-center hover:bg-white hover:text-brand-darker transition-colors uppercase text-xs tracking-wider cursor-pointer";
+            } else {
+                cartCountElement.classList.remove('scale-100');
+                cartCountElement.classList.add('scale-0');
+                checkoutBtn.setAttribute('disabled', 'true');
+                checkoutBtn.className = "w-full py-4 bg-white/5 text-slate-500 font-bold rounded-xl text-center uppercase text-xs tracking-wider cursor-not-allowed";
+            }
+
+            // Build List Nodes
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="text-center py-20 text-slate-500 space-y-4">
+                        <i class="fa-solid fa-cloud-arrow-down text-4xl text-slate-600 block"></i>
+                        <p class="text-sm">Your intellectual asset vault is currently empty.</p>
+                    </div>
+                `;
+                cartSubtotal.innerText = "$0.00";
+                return;
+            }
+
+            let listHTML = '<div class="space-y-4">';
+            let subtotal = 0;
+
+            cart.forEach(item => {
+                subtotal += item.price;
+                listHTML += `
+                    <div class="flex items-center justify-between p-4 bg-brand-dark/50 border border-white/5 rounded-xl">
+                        <div class="space-y-1">
+                            <h4 class="text-xs text-brand-gold font-bold uppercase tracking-wider">${item.category}</h4>
+                            <h3 class="text-sm font-bold text-white">${item.name}</h3>
+                            <p class="text-xs text-slate-400 font-mono">$${item.price.toFixed(2)}</p>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-slate-500 hover:text-red-400 transition-colors p-2" aria-label="Remove item">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            listHTML += '</div>';
+            cartItemsList.innerHTML = listHTML;
+            cartSubtotal.innerText = `$${subtotal.toFixed(2)}`;
+        }
+
+        // Mock Checkout Portal Animation
+        function triggerSimulatedCheckout() {
+            const checkoutBtn = document.getElementById('checkoutBtn');
+            checkoutBtn.innerText = "Securing Encryption & Creating Access Link...";
+            checkoutBtn.setAttribute('disabled', 'true');
+
+            setTimeout(() => {
+                checkoutBtn.innerText = "Provisioning Secure Access Portal...";
+                
+                setTimeout(() => {
+                    checkoutBtn.innerText = "Success! Opening Portal...";
+                    
+                    setTimeout(() => {
+                        // Modal content transformation representing premium purchase success state
+                        const cartItemsList = document.getElementById('cartItemsList');
+                        cartItemsList.innerHTML = `
+                            <div class="text-center py-16 space-y-6">
+                                <div class="w-16 h-16 bg-brand-success/10 border border-brand-success/30 rounded-full flex items-center justify-center text-brand-success text-3xl mx-auto animate-bounce">
+                                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                                </div>
+                                <div class="space-y-2">
+                                    <h3 class="text-xl font-serif font-bold text-white">Framework Transferred</h3>
+                                    <p class="text-sm text-slate-400 px-4">
+                                        We have initiated provision protocol inside your mock database. Your high-ticket onboarding assets are prepared.
+                                    </p>
+                                </div>
+                                <div class="bg-brand-dark/80 p-4 border border-white/5 rounded-xl text-left space-y-2">
+                                    <span class="text-[10px] text-brand-gold font-bold uppercase tracking-widest block">SECURE CREDENTIALS</span>
+                                    <div class="text-xs space-y-1 text-slate-300 font-mono">
+                                        <p>PORTAL-ID: PHILLA-${Math.floor(Math.random() * 900000 + 100000)}</p>
+                                        <p>STATUS: UNLOCKED</p>
+                                    </div>
+                                </div>
+                                <button onclick="resetVaultCart()" class="px-6 py-2 bg-white/5 border border-white/10 text-xs font-bold uppercase text-white hover:text-brand-darker hover:bg-white rounded-lg transition-colors">
+                                    Close Portal
+                                </button>
+                            </div>
+                        `;
+                        
+                        // Clear Cart State internally
+                        cart = [];
+                        document.getElementById('cartCount').classList.remove('scale-100');
+                        document.getElementById('cartCount').classList.add('scale-0');
+                        document.getElementById('cartSubtotal').innerText = "$0.00";
+                        checkoutBtn.innerText = "Unlock Vault Infrastructure";
+                        checkoutBtn.setAttribute('disabled', 'true');
+                        checkoutBtn.className = "w-full py-4 bg-white/5 text-slate-500 font-bold rounded-xl text-center uppercase text-xs tracking-wider cursor-not-allowed";
+                    }, 1200);
+                }, 1000);
+            }, 1000);
+        }
+
+        function resetVaultCart() {
+            toggleCartModal();
+            setTimeout(() => {
+                updateCartUI();
+            }, 300);
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const button = form.querySelector('button');
+            const originalText = button.innerText;
+
+            button.innerText = "Broadcasting Priority Request...";
+            button.setAttribute('disabled', 'true');
+
+            setTimeout(() => {
+                form.innerHTML = `
+                    <div class="p-6 bg-brand-dark/80 border border-brand-accent/20 rounded-xl space-y-3">
+                        <div class="text-brand-gold text-2xl"><i class="fa-regular fa-envelope"></i></div>
+                        <h4 class="font-bold text-white text-md">Strategic Connection Scheduled</h4>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            A Philla partner partner-lead will reach out to schedule an infrastructure review audit of your creative business within 4 business hours.
+                        </p>
+                    </div>
+                `;
+                showToast("System Secured", "Bespoke design request submitted.");
+            }, 1500);
+        }
+
+        // Elegant Toast Alert
+        function showToast(title, description) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = "bg-brand-card border border-white/10 p-4 rounded-xl shadow-2xl flex items-start space-x-3 w-[290px] transform translate-y-10 opacity-0 transition-all duration-300 pointer-events-auto";
+            
+            toast.innerHTML = `
+                <div class="text-brand-gold pt-0.5"><i class="fa-solid fa-circle-check"></i></div>
+                <div>
+                    <h5 class="text-xs font-bold text-white">${title}</h5>
+                    <p class="text-[11px] text-slate-400 mt-0.5">${description}</p>
+                </div>
+            `;
+
+            container.appendChild(toast);
+
+            // Animate transition
+            setTimeout(() => {
+                toast.classList.remove('translate-y-10', 'opacity-0');
+            }, 10);
+
+            // Close Toast
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => {
+                    toast.remove();
+                }, 300);
+            }, 4000);
+        }
+
+        // Header Scrolling Dynamic Styling Action
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('mainHeader');
+            if (window.scrollY > 20) {
+                header.classList.add('bg-brand-darker/95', 'shadow-2xl', 'py-1');
+            } else {
+                header.classList.remove('bg-brand-darker/95', 'shadow-2xl', 'py-1');
+            }
+        });
+
+        // Initialize App State
+        window.onload = function () {
+            calculateLeverage();
+        }
+    </script>
+</body>
+</html>
+
+```
